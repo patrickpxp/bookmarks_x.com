@@ -6,7 +6,7 @@ One JSON file is created per bookmark.
 ## Setup
 
 ```
-git clone patrickpxp/bookmarks_x.com
+git clone https://github.com/patrickpxp/bookmarks_x.com
 cd bookmarks_x.com
 python -m venv venv
 source venv/bin/activate # on Mac/Linux
