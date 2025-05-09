@@ -28,6 +28,7 @@ def get_bookmarks(page: Page):
                 continue
         else:
             save_post(post_id,post_contents)
+            print("saved post ", post_id)
 
 def main():
     playwright = sync_playwright().start()
@@ -40,8 +41,8 @@ def main():
         context = browser.new_context()
         page = context.new_page()
         page.goto('https://x.com/i/bookmarks')
-        page.wait_for_selector("button[aria-label='Account menu']", state="attached") # wait for login to appear
-        storage = context.storage_state(path="state.json")
+        page.wait_for_selector("button[aria-label='Account menu']", state="attached", timeout=30000) # wait for login to appear
+        context.storage_state(path="state.json")
         page.wait_for_timeout(random.randint(1000,5000)) # wait to look human
     else: # there is a state file present
         context = browser.new_context(storage_state=state_file)
